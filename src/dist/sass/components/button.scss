@@ -1,0 +1,33 @@
+.btn {
+    border-radius: 0px;
+}
+
+.btn-outlin-orang {
+    font-weight: 700;
+    color: $color-deep-saffron;
+    border: solid 3px $color-deep-saffron;
+    background-color: rgba($color-deep-saffron, 0);
+    transition: all 0.5s ease-out;
+
+
+    &:hover,
+    &:focus {
+        color: $color-pine-tree;
+        background-color: $color-deep-saffron;
+    }
+}
+
+.btn-deep-saffron {
+    // border-color: $color-deep-saffron;
+    font-weight: 600;
+    color: $color-white-gray;
+    background-color: $color-deep-saffron;
+    transition: all 0.5s ease-out;
+
+
+    &:hover,
+    &:focus {
+        color: darken($color-white-gray, 15%);
+        background-color: darken($color-deep-saffron, 15%);
+    }
+}

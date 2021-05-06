@@ -1,0 +1,10 @@
+.link-deep-saffron {
+    text-decoration: none;
+    color: $color-deep-saffron;
+    transition: all ease-in-out 0.3s;
+}
+
+.link-deep-saffron:hover,
+.link-deep-saffron:focus {
+    color: ligthen($color-deep-saffron, 10%) !important;
+}

@@ -1,0 +1,40 @@
+.page-link {
+    border: solid 2px $color-deep-saffron;
+}
+
+.pagination>li>a {
+    background-color: rgba($color-pine-tree, 0);
+    color: $color-deep-saffron;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    color: white;
+    background-color: $color-deep-saffron !important;
+    border: solid 2px $color-deep-saffron !important;
+}
+
+.pagination>.active>a {
+    color: white;
+    background-color: $color-deep-saffron !important;
+    border: solid 2px $color-deep-saffron !important;
+}
+
+.pagination>.active>a:hover {
+    background-color: $color-deep-saffron !important;
+    border: solid 2px $color-deep-saffron !important;
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}

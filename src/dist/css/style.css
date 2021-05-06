@@ -1,0 +1,311 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #223127;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+.size-hero {
+  font-size: 4rem !important;
+}
+
+.text-deep-saffron {
+  color: #F69228;
+}
+
+.text-white-gray {
+  color: #FBFBFB;
+}
+
+.bg-pine-tree {
+  background-color: #223127;
+}
+
+.bg-kombu-green {
+  background-color: #2D3B2B;
+}
+
+.bg-pine-tree-opac-4 {
+  background-color: rgba(34, 49, 39, 0.6);
+}
+
+.bg-opac-0 {
+  background-color: rgba(34, 49, 39, 0);
+}
+
+.bg-white {
+  background-color: #FFFFFF;
+}
+
+.logo {
+  width: 10%;
+  padding: 10px 10px 0 10px;
+}
+
+.logo-footer {
+  width: 15%;
+}
+
+.navbar-nav {
+  font-weight: bold;
+  text-align: center;
+}
+.navbar-nav li {
+  margin: 0 2px;
+}
+
+.link-deep-saffron {
+  text-decoration: none;
+  color: #F69228;
+  transition: all ease-in-out 0.3s;
+}
+
+.link-deep-saffron:hover,
+.link-deep-saffron:focus {
+  color: ligthen(#F69228, 10%) !important;
+}
+
+/* Carousel base class */
+.carousel {
+  margin-top: 3.5rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  object-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.carousel-item > img::before {
+  background-image: linear-gradient(to bottom right, rgba(6, 52, 85, 0.9), rgba(6, 52, 85, 0.5));
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn-outlin-orang {
+  font-weight: 700;
+  color: #F69228;
+  border: solid 3px #F69228;
+  background-color: rgba(246, 146, 40, 0);
+  transition: all 0.5s ease-out;
+}
+.btn-outlin-orang:hover, .btn-outlin-orang:focus {
+  color: #223127;
+  background-color: #F69228;
+}
+
+.btn-deep-saffron {
+  font-weight: 600;
+  color: #FBFBFB;
+  background-color: #F69228;
+  transition: all 0.5s ease-out;
+}
+.btn-deep-saffron:hover, .btn-deep-saffron:focus {
+  color: #d5d5d5;
+  background-color: #c96c08;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: -0.05rem;
+}
+
+@media (min-width: 40em) {
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+.card {
+  border-radius: 0px;
+  border: solid 4px #F69228;
+}
+
+.card-film .card-img {
+  height: 50vh;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.card-film .card-img img {
+  object-fit: cover;
+  object-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+}
+
+.card-film-detail {
+  border: solid 2rem #F69228;
+}
+.card-film-detail .card-img {
+  height: 60vh;
+}
+.card-film-detail .card-img img {
+  object-fit: cover;
+  object-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 60vh;
+}
+
+.card-overlay {
+  cursor: pointer;
+}
+.card-overlay .overlay {
+  position: relative;
+  height: 50.2vh;
+  opacity: 0;
+  transition: 0.8s ease;
+  background-color: rgba(246, 146, 40, 0.5);
+  z-index: 99;
+  margin-top: -51.3vh;
+  margin-bottom: 2vh;
+}
+.card-overlay:hover .overlay {
+  opacity: 1;
+}
+
+.card-text-overlay {
+  color: #223127;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 2rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 5%;
+}
+
+.form-control-borderless {
+  border: none;
+  background-color: rgba(34, 49, 39, 0);
+}
+
+.form-control-borderless:hover,
+.form-control-borderless:active,
+.form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: rgba(34, 49, 39, 0);
+  color: #FFFFFF;
+}
+
+.form-control-borderless::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FFFFFF;
+  opacity: 1;
+  /* Firefox */
+}
+
+.form-control-borderless:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #FFFFFF;
+}
+
+.form-control-borderless::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #FFFFFF;
+}
+
+.fa-search {
+  /* Microsoft Edge */
+  color: #FFFFFF !important;
+}
+
+.page-link {
+  border: solid 2px #F69228;
+}
+
+.pagination > li > a {
+  background-color: rgba(34, 49, 39, 0);
+  color: #F69228;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: white;
+  background-color: #F69228 !important;
+  border: solid 2px #F69228 !important;
+}
+
+.pagination > .active > a {
+  color: white;
+  background-color: #F69228 !important;
+  border: solid 2px #F69228 !important;
+}
+
+.pagination > .active > a:hover {
+  background-color: #F69228 !important;
+  border: solid 2px #F69228 !important;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+}
+
+.image-logo-marque {
+  width: 10%;
+}
+
+.thumb-post img {
+  object-fit: none;
+  /* Do not scale the image */
+  object-position: center;
+  /* Center the image within the element */
+  width: 100%;
+  max-height: 250px;
+  margin-bottom: 1rem;
+}
+
+/*# sourceMappingURL=style.css.map */

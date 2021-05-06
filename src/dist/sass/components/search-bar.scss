@@ -1,0 +1,36 @@
+.form-control-borderless {
+    border: none;
+    background-color: rgba($color-pine-tree, 0);
+}
+
+.form-control-borderless:hover,
+.form-control-borderless:active,
+.form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: rgba($color-pine-tree, 0);
+    color: $color-white;
+}
+
+.form-control-borderless::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $color-white;
+    opacity: 1;
+    /* Firefox */
+}
+
+.form-control-borderless:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $color-white;
+}
+
+.form-control-borderless::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $color-white;
+}
+
+.fa-search {
+    /* Microsoft Edge */
+    color: $color-white !important;
+}
