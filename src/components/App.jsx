@@ -1,27 +1,38 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NavBarB from "./header/NavBarB.jsx";
+import Footer from "./footer/Footer.jsx";
+import Home from "./home/Home.jsx";
+import Movies from "./movies/Movies.jsx";
+import TvShow from "./tv_show/TvShow.jsx";
+import UpComingMovies from "./upcoming_movies/UpComingMovies.jsx";
+import Details from "./details/Details.jsx";
 
 let App = () => {
 
     return (
         <>
-            <h1>Hello World !!!</h1>
+            <NavBarB />
+
             <Switch>
-                <Route path="/detail">
-                    <RobotDetail />
+                <Route path="/details">
+                    <Details />
                 </Route>
                 <Route path="/upcoming-movies">
-                    <RobotDetail />
+                    <UpComingMovies />
                 </Route>
                 <Route path="/tv-show">
-                    <RobotDetail />
+                    <TvShow />
                 </Route>
                 <Route path="/movies">
-                    <RobotDetail />
+                    <Movies />
                 </Route>
-                <Route path="/">
-                    <RobotList />
+                <Route path="/home">
+                    <Home />
                 </Route>
+                <Redirect to="/home" />
             </Switch>
+
+            <Footer />
         </>
     );
 };

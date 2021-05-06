@@ -1,3 +1,10 @@
+import "./dist/css/bootstrap.min.css";
+import "./dist/font/Open_Sans/Open_Sans_web.css";
+import "./dist/css/style.css";
+// import "./dist/js/bootstrap.bundle.min.js";
+// import "./dist/js/bootstrap.min.js";
+// import "popper.js"
+
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
