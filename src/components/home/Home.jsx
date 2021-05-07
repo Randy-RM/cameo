@@ -1,5 +1,8 @@
 import imgMultiPlatformeCameo from "../../dist/assets/multi_platforme_cameo.png";
 import CarouselHero from "../carousel/Carousel.jsx";
+import TitledSection from "../titled_section/TitledSection.jsx";
+import ButtonOutLine from "../button_outline/ButtonOutLine.jsx";
+import CardFilm from "../card_film/CardFilm.jsx";
 
 let Home = () => {
 
@@ -31,6 +34,16 @@ let Home = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="bg-pine-tree">
+                <TitledSection backgroundColor="bg-pine-tree" sectionTitle="Movies">
+                    <CardFilm />
+                    <CardFilm />
+                    <CardFilm />
+                    <CardFilm />
+                </TitledSection>
+                <ButtonOutLine buttonText="More movies" href="/movies" />
             </div>
         </>
     );
