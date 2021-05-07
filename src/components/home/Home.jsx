@@ -11,14 +11,14 @@ let Home = () => {
 
             <div className="bg-pine-tree pt-5">
                 <div className="container pt-5">
-                    <div className="row featurette">
+                    <div className="row featurette py-5">
                         <div className="col-md-5 thumb-post">
                             <img className="img-responsive" src={imgMultiPlatformeCameo} alt="" />
 
                         </div>
                         <div className="col-md-7 text-light">
                             <h2 className="featurette-heading text-deep-saffron">
-                                Cameo, Anytime anywhere instantly
+                                Cameo, Anytime anywhere instantly &nbsp;
                             <span className="text-white-gray">
                                     See for yourself.
                             </span>
