@@ -145,11 +145,6 @@ h1 {
     font-size: 50px;
   }
 }
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
-  }
-}
 .card {
   border-radius: 0px;
   border: solid 4px #F69228;

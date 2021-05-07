@@ -13,24 +13,26 @@ let App = () => {
         <>
             <NavBarB />
 
-            <Switch>
-                <Route path="/details">
-                    <Details />
-                </Route>
-                <Route path="/upcoming-movies">
-                    <UpComingMovies />
-                </Route>
-                <Route path="/tv-show">
-                    <TvShow />
-                </Route>
-                <Route path="/movies">
-                    <Movies />
-                </Route>
-                <Route path="/home">
-                    <Home />
-                </Route>
-                <Redirect to="/home" />
-            </Switch>
+            <main>
+                <Switch>
+                    <Route path="/details">
+                        <Details />
+                    </Route>
+                    <Route path="/upcoming-movies">
+                        <UpComingMovies />
+                    </Route>
+                    <Route path="/tv-show">
+                        <TvShow />
+                    </Route>
+                    <Route path="/movies">
+                        <Movies />
+                    </Route>
+                    <Route path="/home">
+                        <Home />
+                    </Route>
+                    <Redirect to="/home" />
+                </Switch>
+            </main>
 
             <Footer />
         </>

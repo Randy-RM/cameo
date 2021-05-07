@@ -1,12 +1,33 @@
+import imgMultiPlatformeCameo from "../../dist/assets/multi_platforme_cameo.png";
+import CarouselHero from "../carousel/Carousel.jsx";
+
 let Home = () => {
 
     return (
         <>
-            <div className="py-5 bg-pine-tree text-light">
-                <div className="container py-5 mt-5">
-                    <div className="row justify-content-center">
-                        <div className="col-12 col-md-10 col-lg-8">
-                            <h1 className="text-center size-hero">Home</h1>
+            <div>
+                <CarouselHero />
+            </div>
+
+            <div className="bg-pine-tree pt-5">
+                <div className="container pt-5">
+                    <div className="row featurette">
+                        <div className="col-md-5 thumb-post">
+                            <img className="img-responsive" src={imgMultiPlatformeCameo} alt="" />
+
+                        </div>
+                        <div className="col-md-7 text-light">
+                            <h2 className="featurette-heading text-deep-saffron">
+                                Cameo, Anytime anywhere instantly
+                            <span className="text-white-gray">
+                                    See for yourself.
+                            </span>
+                            </h2>
+                            <p className="lead fw-bold">
+                                Anything new? Of course there is.
+                                More content here to offer you unforgettable moments and
+                                warm memories.
+                        </p>
                         </div>
                     </div>
                 </div>
