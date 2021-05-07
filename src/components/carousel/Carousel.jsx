@@ -5,12 +5,39 @@ import imgA from "../../dist/img/wiche_wiche.jpg";
 import imgB from "../../dist/img/away_gints_zibalodis.jpg";
 import imgC from "../../dist/img/barbary.jpg";
 
-function CarouselHero() {
+function CarouselHero(props) {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+    // function renderCarouselItemUpcomingMovies() {
+    //     return (
+    //         <>
+    //             {props.carouselOfUpcomingMovies.map((item) => {
+    //                 return (
+    //                     <>
+    //                         <Carousel.Item>
+    //                             <img
+    //                                 className="d-block w-100"
+    //                                 src={imgA}
+    //                                 alt="First slide"
+    //                             />
+    //                             <Carousel.Caption className="bg-pine-tree-opac-4">
+    //                                 <h2>First slide label</h2>
+    //                                 <p className="fw-bold">
+    //                                     Nulla vitae elit libero, a pharetra augue mollis interdum.
+    //                                 </p>
+    //                                 <ButtonOutLine buttonText="See More" href="/home" />
+    //                             </Carousel.Caption>
+    //                         </Carousel.Item>
+    //                     </>
+    //                 );
+    //             })}
+    //         </>
+    //     );
+    // }
 
     return (
         <Carousel
@@ -24,6 +51,7 @@ function CarouselHero() {
             indicators={true} controls={true}
             activeIndex={index}
             onSelect={handleSelect}>
+            {console.log(props.carouselOfUpcomingMovies)}
             <Carousel.Item>
                 <img
                     className="d-block w-100"

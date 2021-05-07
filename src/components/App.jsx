@@ -1,4 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import NavBarB from "./header/NavBarB.jsx";
 import Footer from "./footer/Footer.jsx";
 import Home from "./home/Home.jsx";
@@ -8,6 +9,30 @@ import UpComingMovies from "./upcoming_movies/UpComingMovies.jsx";
 import Details from "./details/Details.jsx";
 
 let App = () => {
+
+    const upcomingMoviesUrl = "https://api.themoviedb.org/3/movie/upcoming?api_key=54476c52f6659a1c87aca096a4365b14";
+
+    let [carouselOfUpcomingMovies, setCarouselOfUpcomingMovies] = useState();
+
+    useEffect(() => {
+        let dataList = [];
+        fetch(upcomingMoviesUrl)
+            .then(
+                (response) => {
+                    return response.json()
+                }
+            )
+            .then(
+                (data) => {
+                    // console.log("je suis dans fetchData");
+                    for (let i = 0; i < 4; i++) {
+                        dataList.push(data.results[i]);
+
+                    }
+                    setCarouselOfUpcomingMovies(dataList);
+                }
+            );
+    }, []);
 
     return (
         <>
@@ -28,7 +53,7 @@ let App = () => {
                         <Movies />
                     </Route>
                     <Route path="/home">
-                        <Home />
+                        <Home carouselOfUpcomingMovies={carouselOfUpcomingMovies} />
                     </Route>
                     <Redirect to="/home" />
                 </Switch>

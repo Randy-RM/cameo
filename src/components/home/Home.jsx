@@ -4,12 +4,12 @@ import TitledSection from "../titled_section/TitledSection.jsx";
 import ButtonOutLine from "../button_outline/ButtonOutLine.jsx";
 import CardFilm from "../card_film/CardFilm.jsx";
 
-let Home = () => {
+let Home = (props) => {
 
     return (
         <>
             <div>
-                <CarouselHero />
+                <CarouselHero carouselOfUpcomingMovies={props.carouselOfUpcomingMovies} />
             </div>
 
             <div className="bg-pine-tree pt-5">
@@ -36,7 +36,7 @@ let Home = () => {
                 </div>
             </div>
 
-            <div className="bg-pine-tree">
+            <div className="bg-pine-tree py-4">
                 <TitledSection backgroundColor="bg-pine-tree" sectionTitle="Movies">
                     <CardFilm />
                     <CardFilm />
@@ -44,6 +44,16 @@ let Home = () => {
                     <CardFilm />
                 </TitledSection>
                 <ButtonOutLine buttonText="More movies" href="/movies" />
+            </div>
+
+            <div className="bg-kombu-green py-2">
+                <TitledSection backgroundColor="bg-kombu-green" sectionTitle="Tv show">
+                    <CardFilm />
+                    <CardFilm />
+                    <CardFilm />
+                    <CardFilm />
+                </TitledSection>
+                <ButtonOutLine buttonText="More Tv show" href="/tv-show" />
             </div>
         </>
     );
