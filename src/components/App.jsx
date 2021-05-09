@@ -10,9 +10,11 @@ import Details from "./details/Details.jsx";
 
 let App = () => {
 
-    const upcomingMoviesUrl = "https://api.themoviedb.org/3/movie/upcoming?api_key=54476c52f6659a1c87aca096a4365b14";
+    const apiKey = "54476c52f6659a1c87aca096a4365b14";
+    const apiUrl = "https://api.themoviedb.org";
+    const upcomingMoviesUrl = `${apiUrl}/3/movie/upcoming?api_key=${apiKey}`;
 
-    let [carouselOfUpcomingMovies, setCarouselOfUpcomingMovies] = useState();
+    let [carouselOfUpcomingMovies, setCarouselOfUpcomingMovies] = useState([]);
 
     useEffect(() => {
         let dataList = [];
