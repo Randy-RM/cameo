@@ -6,6 +6,14 @@ import CardFilm from "../card_film/CardFilm.jsx";
 
 let Home = (props) => {
 
+
+    let itemWithProps = props.popularMovies.map((movie) => {
+        {/* console.log(movie.title) */ }
+        return (
+            <CardFilm movie={movie} key={movie.id} />
+        );
+    });
+
     return (
         <>
             <div>
@@ -17,7 +25,6 @@ let Home = (props) => {
                     <div className="row featurette py-5">
                         <div className="col-md-5 thumb-post">
                             <img className="img-responsive" src={imgMultiPlatformeCameo} alt="" />
-
                         </div>
                         <div className="col-md-7 text-light">
                             <h2 className="featurette-heading text-deep-saffron">
@@ -37,11 +44,8 @@ let Home = (props) => {
             </div>
 
             <div className="bg-pine-tree py-4">
-                <TitledSection backgroundColor="bg-pine-tree" sectionTitle="Movies">
-                    <CardFilm />
-                    <CardFilm />
-                    <CardFilm />
-                    <CardFilm />
+                <TitledSection backgroundColor="bg-pine-tree" sectionTitle="Movies" movie={props.popularMovies}>
+                    {itemWithProps}
                 </TitledSection>
                 <ButtonOutLine buttonText="More movies" href="/movies" />
             </div>

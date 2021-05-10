@@ -40,18 +40,26 @@ let App = () => {
             //         }
             //     );
 
-            Promise.all(homeApiUrls.map((url) =>
-                fetch(url).then(response => response.json())
-            )).then(data => {
-                console.log(data);
-                for (let i = 0; i < 4; i++) {
-                    itemCarouselUpcomingMoviesList.push(data[0].results[i]);
-                    itemPopularMoviesList.push(data[1].results[i]);
-
+            Promise.all(homeApiUrls.map(
+                (url) => {
+                    fetch(url)
+                        .then(
+                            (response) => {
+                                response.json();
+                            }
+                        )
                 }
-                setCarouselOfUpcomingMovies(itemCarouselUpcomingMoviesList);
-                setPopularMovies(itemPopularMoviesList);
-            })
+            )).then(
+                (data) => {
+                    console.log(data);
+                    // let myData = data[0];
+                    // for (let i = 0; i < 4; i++) {
+                    //     itemCarouselUpcomingMoviesList.push(myData.results[i]);
+
+                    // }
+                    // setCarouselOfUpcomingMovies(itemCarouselUpcomingMoviesList);
+
+                })
         } catch (error) {
             console.error(error);
         }
@@ -76,10 +84,7 @@ let App = () => {
                         <Movies />
                     </Route>
                     <Route path="/home">
-                        <Home
-                            carouselOfUpcomingMovies={carouselOfUpcomingMovies}
-                            popularMovies={popularMovies}
-                        />
+                        <Home carouselOfUpcomingMovies={carouselOfUpcomingMovies} />
                     </Route>
                     <Redirect to="/home" />
                 </Switch>

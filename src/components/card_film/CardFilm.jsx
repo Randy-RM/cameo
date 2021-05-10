@@ -1,8 +1,12 @@
 import captainAmerica from "../../dist/img/captain_america.jpg";
 
-let CardFilm = () => {
+let CardFilm = (props) => {
+
+    const sourceImage = "https://image.tmdb.org/t/p/original/";
+
     return (
         <>
+
             <div className="col-md-3 p-3 my-1">
                 <div className="card-film text-white">
                     <div className="text-center">
@@ -14,7 +18,7 @@ let CardFilm = () => {
                                 <p className="card-text-overlay">See more</p>
                             </div>
                         </div>
-                        <h3 className="h4">Captain América</h3>
+                        <h3 className="h4">{props.title}</h3>
                         <p className="fw-bold">Note : 8.5</p>
                     </div>
                 </div>

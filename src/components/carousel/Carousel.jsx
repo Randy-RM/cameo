@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import ButtonOutLine from "../button_outline/ButtonOutLine.jsx";
-import imgA from "../../dist/img/wiche_wiche.jpg";
 
 function CarouselHero(props) {
 
@@ -15,7 +14,6 @@ function CarouselHero(props) {
 
     return (
         <>
-            {console.log(props.carouselOfUpcomingMovies)}
             <Carousel
                 className="bg-pine-tree"
                 indicators={true}
