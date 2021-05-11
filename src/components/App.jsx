@@ -8,6 +8,7 @@ import Movies from "./movies/Movies.jsx";
 import TvShow from "./tv_show/TvShow.jsx";
 import UpComingMovies from "./upcoming_movies/UpComingMovies.jsx";
 import MovieDetails from "./movie_details/MovieDetails.jsx";
+import TvShowDetails from "./tv_show_details/TvShowDetails.jsx";
 
 let App = () => {
 
@@ -58,6 +59,10 @@ let App = () => {
         history.push(`/movie/details/${id}`);
     };
 
+    let handleClickTvShowCard = (id) => {
+        history.push(`/tv-show/details/${id}`);
+    };
+
     return (
         <>
             {/* {console.log(popularMovies)} */}
@@ -67,6 +72,9 @@ let App = () => {
                 <Switch>
                     <Route path="/movie/details/:movieId">
                         <MovieDetails />
+                    </Route>
+                    <Route path="/tv-show/details/:tvShowId">
+                        <TvShowDetails />
                     </Route>
                     <Route path="/upcoming-movies">
                         <UpComingMovies />
@@ -84,6 +92,7 @@ let App = () => {
                             sampleTvShow={sampleTvShow}
                             movieGengres={movieGengres}
                             handleClickMovieCard={handleClickMovieCard}
+                            handleClickTvShowCard={handleClickTvShowCard}
                         />
                     </Route>
                     <Redirect to="/home" />

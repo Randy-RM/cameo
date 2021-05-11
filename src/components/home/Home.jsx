@@ -53,6 +53,7 @@ let Home = (props) => {
                     backgroundColor="bg-kombu-green"
                     sectionTitle="Tv show"
                     tvs={props.sampleTvShow}
+                    handleClickTvShowCard={props.handleClickTvShowCard}
                 />
                 <ButtonLinkOutLine buttonText="More tv show" href="/tv-show" />
             </div>

@@ -9,30 +9,30 @@ background-size:cover;
 background-position:center;
 `
 
-let MovieDetails = () => {
+let TvShowDetails = () => {
 
-    let [movieDetails, setMovieDetails] = useState([]);
-    let [movieCredits, setMovieCredits] = useState([]);
-    let { movieId } = useParams();
+    let [tvShowDetails, setTvShowDetails] = useState([]);
+    let [tvShowCredits, setTvShowCredits] = useState([]);
+    let { tvShowId } = useParams();
     const apiKey = "54476c52f6659a1c87aca096a4365b14";
-    const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-    const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+    const tvShowDetailsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${apiKey}`;
+    const tvShowCreditsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}/credits?api_key=${apiKey}`;
     const sourceImage = "https://image.tmdb.org/t/p/original/";
-    const movieDetailsApiUrls = [movieDetailsUrl, movieCreditsUrl];
+    const tvShowDetailsApiUrls = [tvShowDetailsUrl, tvShowCreditsUrl];
 
     let starsRatings = () => {
         let stars = [];
-        for (let i = 0; i < Math.floor(movieDetails.vote_average); i++) {
+        for (let i = 0; i < Math.floor(tvShowDetails.vote_average); i++) {
             stars.push(<Star key={i} />);
         }
         return stars;
     };
 
-    let movieStars = starsRatings();
+    let tvShowStars = starsRatings();
 
     useEffect(async () => {
         try {
-            Promise.all(movieDetailsApiUrls.map((url) =>
+            Promise.all(tvShowDetailsApiUrls.map((url) =>
                 fetch(url)
                     .then(
                         (response) => {
@@ -40,8 +40,8 @@ let MovieDetails = () => {
                         }
                     )
             )).then((data) => {
-                setMovieDetails(data[0]);
-                setMovieCredits(data[1].cast);
+                setTvShowDetails(data[0]);
+                setTvShowCredits(data[1].cast);
             })
         } catch (error) {
 
@@ -52,12 +52,12 @@ let MovieDetails = () => {
     return (
         <>
             <div className="">
-                <StyledHero backgroundImg={`${sourceImage}${movieDetails.backdrop_path}`}
+                <StyledHero backgroundImg={`${sourceImage}${tvShowDetails.backdrop_path}`}
                     className="hero text-light">
                     <div className="container py-5 mt-5">
                         <div className="row justify-content-center">
                             <div className="col-12 col-md-10 col-lg-8">
-                                <h1 className="text-center size-hero">{movieDetails.title}</h1>
+                                <h1 className="text-center size-hero">{tvShowDetails.name}</h1>
                             </div>
                         </div>
                     </div>
@@ -72,12 +72,12 @@ let MovieDetails = () => {
                         <div className="col-md-4 p-3 my-2">
                             <div className="card-film-detail text-light">
                                 <div className="card-img text-center">
-                                    <img src={`${sourceImage}${movieDetails.poster_path}`} alt="" />
+                                    <img src={`${sourceImage}${tvShowDetails.poster_path}`} alt="" />
                                 </div>
                             </div>
                             <div className="py-2">
                                 <p className="text-center h4 fw-bold text-deep-saffron">
-                                    Release date {movieDetails.release_date}
+                                    Release date {tvShowDetails.release_date}
                                 </p>
                             </div>
                             <div className="text-center">
@@ -87,7 +87,7 @@ let MovieDetails = () => {
                                 <p className="">
                                     <span className="text-deep-saffron">
                                         {
-                                            movieStars.map((star) => {
+                                            tvShowStars.map((star) => {
                                                 return star;
                                             })
                                         }
@@ -100,10 +100,10 @@ let MovieDetails = () => {
                         <div className="col-md-7 p-3 my-2">
                             <div className="text-light">
                                 <h2 className="my-1 display-6 fw-bold">
-                                    {movieDetails.title} synopsis
+                                    {tvShowDetails.name} synopsis
                                 </h2>
                                 <p className="my-1 h4">
-                                    {movieDetails.overview}
+                                    {tvShowDetails.overview}
                                 </p>
                             </div>
                             <div className="text-light">
@@ -112,7 +112,7 @@ let MovieDetails = () => {
                                 </p>
                                 <p className="my-3 h4">
                                     {
-                                        movieCredits.map((actor) => {
+                                        tvShowCredits.map((actor) => {
                                             return (
                                                 <span key={actor.id}>
                                                     {actor.name}
@@ -135,4 +135,4 @@ let MovieDetails = () => {
     );
 };
 
-export default MovieDetails;
+export default TvShowDetails;

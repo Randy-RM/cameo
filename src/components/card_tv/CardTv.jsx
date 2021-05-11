@@ -17,7 +17,7 @@ let CardTv = (props) => {
     return (
         <>
             <div className="col-md-3 p-3 my-1">
-                <div className="card-film text-white">
+                <div className="card-film text-white" onClick={() => props.handleClickTvShowCard(props.tv.id)}>
                     <div className="text-center">
                         <div className="card-overlay">
                             <p className="card-img py-2">

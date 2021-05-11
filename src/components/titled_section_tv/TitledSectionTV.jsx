@@ -12,7 +12,11 @@ let TitledSectionTv = (props) => {
                         {
                             props.tvs.map((tv) => {
                                 return (
-                                    <CardTv tv={tv} key={tv.id} />
+                                    <CardTv
+                                        tv={tv}
+                                        key={tv.id}
+                                        handleClickTvShowCard={props.handleClickTvShowCard}
+                                    />
                                 );
                             })
                         }
