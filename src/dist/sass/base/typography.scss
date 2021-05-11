@@ -15,9 +15,13 @@ h1 {
 }
 
 .text-deep-saffron {
-    color: $color-deep-saffron;
+    color: $color-deep-saffron !important;
 }
 
 .text-white-gray {
-    color: $color-white-gray;
+    color: $color-white-gray !important;
+}
+
+.text-pine-tree {
+    color: $color-pine-tree !important;
 }

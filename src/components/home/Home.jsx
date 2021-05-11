@@ -1,18 +1,10 @@
 import imgMultiPlatformeCameo from "../../dist/assets/multi_platforme_cameo.png";
 import CarouselHero from "../carousel/Carousel.jsx";
-import TitledSection from "../titled_section/TitledSection.jsx";
+import TitledSectionMovie from "../titled_section_movie/TitledSectionMovie.jsx";
+import TitledSectionTv from "../titled_section_tv/TitledSectionTV.jsx";
 import ButtonOutLine from "../button_outline/ButtonOutLine.jsx";
-import CardFilm from "../card_film/CardFilm.jsx";
 
 let Home = (props) => {
-
-
-    let itemWithProps = props.popularMovies.map((movie) => {
-        {/* console.log(movie.title) */ }
-        return (
-            <CardFilm movie={movie} key={movie.id} />
-        );
-    });
 
     return (
         <>
@@ -20,7 +12,7 @@ let Home = (props) => {
                 <CarouselHero carouselOfUpcomingMovies={props.carouselOfUpcomingMovies} />
             </div>
 
-            <div className="bg-pine-tree pt-5">
+            <div className="bg-pine-tree">
                 <div className="container pt-5">
                     <div className="row featurette py-5">
                         <div className="col-md-5 thumb-post">
@@ -44,20 +36,21 @@ let Home = (props) => {
             </div>
 
             <div className="bg-pine-tree py-4">
-                <TitledSection backgroundColor="bg-pine-tree" sectionTitle="Movies" movie={props.popularMovies}>
-                    {itemWithProps}
-                </TitledSection>
+                <TitledSectionMovie
+                    backgroundColor="bg-pine-tree"
+                    sectionTitle="Movies"
+                    movies={props.popularMovies}
+                    handleClickMovieCard={props.handleClickMovieCard}
+                />
                 <ButtonOutLine buttonText="More movies" href="/movies" />
             </div>
-
-            <div className="bg-kombu-green py-2">
-                <TitledSection backgroundColor="bg-kombu-green" sectionTitle="Tv show">
-                    <CardFilm />
-                    <CardFilm />
-                    <CardFilm />
-                    <CardFilm />
-                </TitledSection>
-                <ButtonOutLine buttonText="More Tv show" href="/tv-show" />
+            <div className="bg-kombu-green py-4">
+                <TitledSectionTv
+                    backgroundColor="bg-kombu-green"
+                    sectionTitle="Tv show"
+                    tvs={props.sampleTvShow}
+                />
+                <ButtonOutLine buttonText="More tv show" href="/tv-show" />
             </div>
         </>
     );

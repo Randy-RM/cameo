@@ -23,15 +23,23 @@ h1 {
 }
 
 .text-deep-saffron {
-  color: #F69228;
+  color: #F69228 !important;
 }
 
 .text-white-gray {
-  color: #FBFBFB;
+  color: #FBFBFB !important;
+}
+
+.text-pine-tree {
+  color: #223127 !important;
 }
 
 .bg-pine-tree {
   background-color: #223127;
+}
+
+.bg-deep-saffron {
+  background-color: #F69228;
 }
 
 .bg-kombu-green {
@@ -102,8 +110,8 @@ h1 {
   width: 100%;
 }
 
-.carousel-item > img::before {
-  background-image: linear-gradient(to bottom right, rgba(6, 52, 85, 0.9), rgba(6, 52, 85, 0.5));
+.hero {
+  padding: 20vh 0;
 }
 
 .btn {
@@ -293,13 +301,15 @@ h1 {
   width: 10%;
 }
 
+.icon-mini {
+  width: 5%;
+}
+
 .thumb-post img {
-  object-fit: none;
   /* Do not scale the image */
   object-position: center;
   /* Center the image within the element */
   width: 100%;
-  max-height: 250px;
   margin-bottom: 1rem;
 }
 
