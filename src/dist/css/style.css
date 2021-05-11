@@ -131,14 +131,15 @@ h1 {
 }
 
 .btn-deep-saffron {
+  border: none;
   font-weight: 600;
-  color: #FBFBFB;
+  color: #223127;
   background-color: #F69228;
   transition: all 0.5s ease-out;
 }
 .btn-deep-saffron:hover, .btn-deep-saffron:focus {
-  color: #d5d5d5;
-  background-color: #c96c08;
+  color: #0d130f;
+  background-color: #e27909;
 }
 
 /* Thin out the marketing headings */

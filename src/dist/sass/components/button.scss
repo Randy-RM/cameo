@@ -18,16 +18,16 @@
 }
 
 .btn-deep-saffron {
-    // border-color: $color-deep-saffron;
+    border: none;
     font-weight: 600;
-    color: $color-white-gray;
+    color: $color-pine-tree;
     background-color: $color-deep-saffron;
     transition: all 0.5s ease-out;
 
 
     &:hover,
     &:focus {
-        color: darken($color-white-gray, 15%);
-        background-color: darken($color-deep-saffron, 15%);
+        color: darken($color-pine-tree, 10%);
+        background-color: darken($color-deep-saffron, 10%);
     }
 }
