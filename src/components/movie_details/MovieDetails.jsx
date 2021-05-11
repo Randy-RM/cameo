@@ -20,15 +20,15 @@ let MovieDetails = () => {
     const sourceImage = "https://image.tmdb.org/t/p/original/";
     const homeApiUrls = [movieDetailsUrl, movieCreditsUrl];
 
-    // let starsNote = () => {
-    //     let stars = [];
-    //     for (let i = 0; i < Math.round(movieDetails.vote_average); i++) {
-    //         stars.push(<Star key={i} />);
-    //     }
-    //     return stars;
-    // };
+    let starsRatings = () => {
+        let stars = [];
+        for (let i = 0; i < Math.floor(movieDetails.vote_average); i++) {
+            stars.push(<Star key={i} />);
+        }
+        return stars;
+    };
 
-    // let movieStars = starsNote();
+    let movieStars = starsRatings();
 
     useEffect(async () => {
         try {
@@ -46,12 +46,14 @@ let MovieDetails = () => {
         } catch (error) {
 
         }
+        window.scrollTo(0, 0);
     }, []);
 
     return (
         <>
             {console.log(movieDetails)}
             {console.log(movieCredits)}
+            {console.log(movieStars)}
             <div className="">
                 <StyledHero backgroundImg={`${sourceImage}${movieDetails.backdrop_path}`}
                     className="hero text-light">
@@ -81,6 +83,20 @@ let MovieDetails = () => {
                                     Release date {movieDetails.release_date}
                                 </p>
                             </div>
+                            <div className="text-center">
+                                <p className="h4 fw-bold text-deep-saffron">
+                                    Ratings
+                                </p>
+                                <p className="">
+                                    <span className="text-deep-saffron">
+                                        {
+                                            movieStars.map((star) => {
+                                                return star;
+                                            })
+                                        }
+                                    </span>
+                                </p>
+                            </div>
                         </div>
 
 
@@ -94,15 +110,14 @@ let MovieDetails = () => {
                                 </p>
                             </div>
                             <div className="text-light">
-                                <h2 className="my-3 display-6 fw-bold">
-                                    Credits <i className="fas fa-users"></i>
-                                </h2>
+                                <p className="my-3 display-6 fw-bold">
+                                    Credits
+                                </p>
                                 <p className="my-3 h4">
                                     {
                                         movieCredits.map((actor) => {
                                             return (
                                                 <span key={actor.id}>
-                                                    <span className="text-deep-saffron fw-bolder">|</span>
                                                     {actor.name}
                                                     <span className="text-deep-saffron"> As </span>
                                                     {actor.character}
@@ -111,16 +126,6 @@ let MovieDetails = () => {
                                             );
                                         })
                                     }
-                                </p>
-                            </div>
-                            <div className="text-light">
-                                <h2 className="my-3 display-6 fw-bold">
-                                    Note <i className="fas fa-star"></i>
-                                </h2>
-                                <p className="my-3 h4">
-                                    <span className="text-deep-saffron">
-
-                                    </span>
                                 </p>
                             </div>
                         </div>

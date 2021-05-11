@@ -51,7 +51,12 @@ function CarouselHero(props) {
                                     Release date <br />
                                     {`${movie.release_date}`}
                                 </p>
-                                <ButtonOutLine buttonText="See More" href="/home" />
+                                <ButtonOutLine
+                                    buttonText="See More"
+                                    href=""
+                                    movieId={movie.id}
+                                    handleClickMovieCard={props.handleClickMovieCard}
+                                />
                             </Carousel.Caption>
                         </StyledCaroussel>
                     );

@@ -5,9 +5,11 @@ let ButtonOutLine = (props) => {
         <>
             <div className="text-center text-white fw-bold py-1">
                 <p>
-                    <NavLink className="btn btn-lg btn-outlin-orang" to={props.href}>
+                    <button
+                        className="btn btn-lg btn-outlin-orang"
+                        onClick={() => props.handleClickMovieCard(props.movieId)}>
                         {props.buttonText}
-                    </NavLink>
+                    </button>
                 </p>
             </div>
         </>

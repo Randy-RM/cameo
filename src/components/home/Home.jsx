@@ -9,7 +9,10 @@ let Home = (props) => {
     return (
         <>
             <div>
-                <CarouselHero carouselOfUpcomingMovies={props.carouselOfUpcomingMovies} />
+                <CarouselHero
+                    carouselOfUpcomingMovies={props.carouselOfUpcomingMovies}
+                    handleClickMovieCard={props.handleClickMovieCard}
+                />
             </div>
 
             <div className="bg-pine-tree">

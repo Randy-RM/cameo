@@ -4,15 +4,15 @@ let CardMovie = (props) => {
 
     const sourceImage = "https://image.tmdb.org/t/p/original/";
 
-    let starsNote = () => {
+    let starsRatings = () => {
         let stars = [];
-        for (let i = 0; i < Math.round(props.movie.vote_average); i++) {
+        for (let i = 0; i < Math.floor(props.movie.vote_average); i++) {
             stars.push(<Star key={i} />);
         }
         return stars;
     };
 
-    let movieStars = starsNote();
+    let movieStars = starsRatings();
 
     return (
         <>
@@ -30,7 +30,7 @@ let CardMovie = (props) => {
                         <h3 className="h4">{props.movie.title.length > 18 ? `${props.movie.title.slice(0, 18)} ...` : props.movie.title}</h3>
                         <p className="fw-bold">
                             <span className="text-deep-saffron">
-                                Note : {
+                                Ratings : {
                                     movieStars.map((star) => {
                                         return star;
                                     })
