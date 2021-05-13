@@ -33,29 +33,30 @@ let MovieDetails = () => {
 
     let movieStars = starsRatings();
 
-    useEffect(() => {
-        async function fetchMovieDetails() {
-            try {
-                await Promise.all(movieDetailsApiUrls.map((url) =>
-                    fetch(url)
-                        .then(
-                            (response) => {
-                                return response.json();
-                            }
-                        )
-                )).then((data) => {
-                    setMovieDetails(data[0]);
-                    setMovieCredits(data[1].cast);
-                    setMovieTrailers(data[2]);
-                })
-            } catch (error) {
+    async function fetchMovieDetails() {
+        try {
+            await Promise.all(movieDetailsApiUrls.map((url) =>
+                fetch(url)
+                    .then(
+                        (response) => {
+                            return response.json();
+                        }
+                    )
+            )).then((data) => {
+                setMovieDetails(data[0]);
+                setMovieCredits(data[1].cast);
+                setMovieTrailers(data[2]);
+            })
+        } catch (error) {
 
-            }
         }
-        fetchMovieDetails();
         window.scrollTo(0, 0);
+    }
+
+    useEffect(() => {
+        fetchMovieDetails();
     }, []);
-    //console.log(movieTrailers)
+
     return (
         <>
             <div className="">
@@ -67,7 +68,7 @@ let MovieDetails = () => {
                                 <h1 className="text-center size-hero">{movieDetails.title}</h1>
                             </div>
                             <div className="col-12 col-md-10 col-lg-8">
-                                <TrailerModal movieTrailers={movieTrailers} />
+                                <TrailerModal trailers={movieTrailers} />
                             </div>
                         </div>
                     </div>

@@ -29,17 +29,21 @@ let TrailerModal = (props) => {
 
             </div>
 
-            <Modal entered show={show} onHide={handleClose} size="lg">
+            <Modal className="bg-opac-0 w-100" entered show={show} onHide={handleClose} size="lg">
                 <div className="bg-pine-tree">
-                    <Modal.Header className="bg-pine-tree border-pine-tree">
-                        <Modal.Title></Modal.Title>
+                    <Modal.Header className="bg-opac-0">
+                        <Modal.Title>
+                            <span className="text-deep-saffron fw-bolder">
+                                {`Trailer`}
+                            </span>
+                        </Modal.Title>
                         <span className="btn-close-modal h1" variant="secondary" onClick={handleClose}>
                             X
                         </span>
                     </Modal.Header>
-                    <Modal.Body className="bg-pine-tree border-pine-tree text-light d-flex justify-content-center">
-                        <div className="bg-deep-saffron">
-                            <YoutubePlayer movieTrailers={props.movieTrailers} />
+                    <Modal.Body className="bg-opac-0 text-light d-flex justify-content-center">
+                        <div className="">
+                            <YoutubePlayer trailers={props.trailers} />
                         </div>
                     </Modal.Body>
                 </div>

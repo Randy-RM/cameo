@@ -2,6 +2,7 @@ import Star from "../star/Star.jsx";
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import TrailerModal from "../trailer_modal/TrailerModal.jsx"
 
 const StyledHero = styled('div')`
 background : linear-gradient(0deg, rgba(34, 49, 39, 1), rgba(34, 49, 39, 0.4)), url("${({ backgroundImg }) => backgroundImg}");
@@ -13,12 +14,14 @@ let TvShowDetails = () => {
 
     let [tvShowDetails, setTvShowDetails] = useState([]);
     let [tvShowCredits, setTvShowCredits] = useState([]);
+    let [tvShowTrailers, setTvShowTrailers] = useState([]);
     let { tvShowId } = useParams();
     const apiKey = "54476c52f6659a1c87aca096a4365b14";
     const tvShowDetailsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${apiKey}`;
     const tvShowCreditsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}/credits?api_key=${apiKey}`;
+    const tvShowTrailerUrl = `https://api.themoviedb.org/3/tv/${tvShowId}/videos?api_key=${apiKey}`;
     const sourceImage = "https://image.tmdb.org/t/p/original/";
-    const tvShowDetailsApiUrls = [tvShowDetailsUrl, tvShowCreditsUrl];
+    const tvShowDetailsApiUrls = [tvShowDetailsUrl, tvShowCreditsUrl, tvShowTrailerUrl];
 
     let starsRatings = () => {
         let stars = [];
@@ -30,26 +33,28 @@ let TvShowDetails = () => {
 
     let tvShowStars = starsRatings();
 
-    useEffect(() => {
-        async function fetchTvShowDetails() {
-            try {
-                await Promise.all(tvShowDetailsApiUrls.map((url) =>
-                    fetch(url)
-                        .then(
-                            (response) => {
-                                return response.json();
-                            }
-                        )
-                )).then((data) => {
-                    setTvShowDetails(data[0]);
-                    setTvShowCredits(data[1].cast);
-                })
-            } catch (error) {
+    async function fetchTvShowDetails() {
+        try {
+            await Promise.all(tvShowDetailsApiUrls.map((url) =>
+                fetch(url)
+                    .then(
+                        (response) => {
+                            return response.json();
+                        }
+                    )
+            )).then((data) => {
+                setTvShowDetails(data[0]);
+                setTvShowCredits(data[1].cast);
+                setTvShowTrailers(data[2]);
+            })
+        } catch (error) {
 
-            }
         }
-        fetchTvShowDetails();
         window.scrollTo(0, 0);
+    }
+
+    useEffect(() => {
+        fetchTvShowDetails();
     }, []);
 
     return (
@@ -61,6 +66,9 @@ let TvShowDetails = () => {
                         <div className="row justify-content-center">
                             <div className="col-12 col-md-10 col-lg-8">
                                 <h1 className="text-center size-hero">{tvShowDetails.name}</h1>
+                            </div>
+                            <div className="col-12 col-md-10 col-lg-8">
+                                <TrailerModal trailers={tvShowTrailers} />
                             </div>
                         </div>
                     </div>

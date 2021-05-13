@@ -19,7 +19,8 @@ let App = () => {
     const popularMoviesUrl = `${apiUrl}/3/movie/popular?api_key=${apiKey}`;
     const tvShowUrl = `${apiUrl}/3/tv/popular?api_key=${apiKey}`
     const movieGenreUtl = `${apiUrl}/3/genre/movie/list?api_key=${apiKey}`;
-    const homeApiUrls = [upcomingMoviesUrl, popularMoviesUrl, tvShowUrl, movieGenreUtl];
+    const testUrl = "https://api.themoviedb.org/3/trending/all/day?api_key=54476c52f6659a1c87aca096a4365b14";
+    const homeApiUrls = [upcomingMoviesUrl, popularMoviesUrl, tvShowUrl, movieGenreUtl, testUrl];
 
     let history = useHistory();
 
@@ -27,6 +28,7 @@ let App = () => {
     let [popularMovies, setPopularMovies] = useState([]);
     let [sampleTvShow, setSampleTvShow] = useState([]);
     let [movieGengres, setMovieGengres] = useState([]);
+    let [test, setTest] = useState([]);
 
 
     async function fetchData() {
@@ -51,6 +53,7 @@ let App = () => {
                 setPopularMovies(popularMoviesList);
                 setSampleTvShow(sampleTvShowList);
                 setMovieGengres(movieGengreList);
+                setTest(data[4]);
             })
         } catch (error) {
             console.error("erreur de connection");
@@ -67,30 +70,33 @@ let App = () => {
     };
 
     let handleClickTvShowCard = (id) => {
-        history.push(`/tv-show/details/${id}`);
+        history.push(`/tv/details/${id}`);
     };
+
+    //console.log(test);
 
     return (
         <>
-            {/* {console.log(popularMovies)} */}
             <NavBarB />
 
             <main>
                 <Switch>
-                    <Route path="/movie/details/:movieId">
-                        <MovieDetails />
-                    </Route>
-                    <Route path="/tv-show/details/:tvShowId">
-                        <TvShowDetails />
-                    </Route>
                     <Route path="/upcoming-movies">
                         <UpComingMovies />
+                    </Route>
+                    <Route path="/tv/details/:tvShowId">
+                        <TvShowDetails />
                     </Route>
                     <Route path="/tv-show">
                         <TvShow />
                     </Route>
+                    <Route path="/movie/details/:movieId">
+                        <MovieDetails />
+                    </Route>
                     <Route path="/movies">
-                        <Movies />
+                        <Movies
+                            handleClickMovieCard={handleClickMovieCard}
+                        />
                     </Route>
                     <Route path="/home">
                         <Home
