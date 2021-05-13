@@ -30,22 +30,25 @@ let TvShowDetails = () => {
 
     let tvShowStars = starsRatings();
 
-    useEffect(async () => {
-        try {
-            Promise.all(tvShowDetailsApiUrls.map((url) =>
-                fetch(url)
-                    .then(
-                        (response) => {
-                            return response.json();
-                        }
-                    )
-            )).then((data) => {
-                setTvShowDetails(data[0]);
-                setTvShowCredits(data[1].cast);
-            })
-        } catch (error) {
+    useEffect(() => {
+        async function fetchTvShowDetails() {
+            try {
+                await Promise.all(tvShowDetailsApiUrls.map((url) =>
+                    fetch(url)
+                        .then(
+                            (response) => {
+                                return response.json();
+                            }
+                        )
+                )).then((data) => {
+                    setTvShowDetails(data[0]);
+                    setTvShowCredits(data[1].cast);
+                })
+            } catch (error) {
 
+            }
         }
+        fetchTvShowDetails();
         window.scrollTo(0, 0);
     }, []);
 

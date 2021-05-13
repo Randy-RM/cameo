@@ -14,6 +14,7 @@ let App = () => {
 
     const apiKey = "54476c52f6659a1c87aca096a4365b14";
     const apiUrl = "https://api.themoviedb.org";
+    // const upcomingMoviesUrl = `${apiUrl}/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}`;
     const upcomingMoviesUrl = `${apiUrl}/3/movie/upcoming?api_key=${apiKey}`;
     const popularMoviesUrl = `${apiUrl}/3/movie/popular?api_key=${apiKey}`;
     const tvShowUrl = `${apiUrl}/3/tv/popular?api_key=${apiKey}`
@@ -27,13 +28,14 @@ let App = () => {
     let [sampleTvShow, setSampleTvShow] = useState([]);
     let [movieGengres, setMovieGengres] = useState([]);
 
-    useEffect(async () => {
+
+    async function fetchData() {
         let carouselUpcomingMoviesList = [];
         let popularMoviesList = [];
         let sampleTvShowList = [];
         let movieGengreList = [];
         try {
-            Promise.all(homeApiUrls.map((url) =>
+            await Promise.all(homeApiUrls.map((url) =>
                 fetch(url).then(response => response.json())
             )).then(data => {
                 for (let i = 0; i < 4; i++) {
@@ -51,8 +53,13 @@ let App = () => {
                 setMovieGengres(movieGengreList);
             })
         } catch (error) {
-            console.error(error);
+            console.error("erreur de connection");
         }
+    }
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        fetchData();
     }, []);
 
     let handleClickMovieCard = (id) => {

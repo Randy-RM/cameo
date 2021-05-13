@@ -58,6 +58,10 @@ h1 {
   background-color: #FFFFFF;
 }
 
+.border-pine-tree {
+  border-color: #223127;
+}
+
 .logo {
   width: 10%;
   padding: 10px 10px 0 10px;
@@ -118,6 +122,24 @@ h1 {
   border-radius: 0px;
 }
 
+.btn-circel {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem;
+  width: 3%;
+  border-radius: 100px !important;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  border-left: 30px solid #F69228;
+  transition: all 0.5s ease-out;
+}
+
 .btn-outlin-orang {
   font-weight: 700;
   color: #F69228;
@@ -128,6 +150,9 @@ h1 {
 .btn-outlin-orang:hover, .btn-outlin-orang:focus {
   color: #223127;
   background-color: #F69228;
+}
+.btn-outlin-orang:hover .triangle, .btn-outlin-orang:focus .triangle {
+  border-left: 30px solid #223127;
 }
 
 .btn-deep-saffron {
@@ -140,6 +165,16 @@ h1 {
 .btn-deep-saffron:hover, .btn-deep-saffron:focus {
   color: #0d130f;
   background-color: #e27909;
+}
+
+.btn-close-modal {
+  cursor: pointer;
+  color: #F69228;
+  font-weight: bolder;
+}
+
+.btn-ronded {
+  border-radius: 100px;
 }
 
 /* Thin out the marketing headings */
@@ -312,6 +347,17 @@ h1 {
   /* Center the image within the element */
   width: 100%;
   margin-bottom: 1rem;
+}
+
+/* Thin out the marketing headings */
+.iframe {
+  width: 640px;
+}
+
+@media (min-width: 40em) {
+  .iframe {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -2,6 +2,26 @@
     border-radius: 0px;
 }
 
+.btn-circel {
+    //background-color: red;
+    // color: white;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    width: 3%;
+    border-radius: 100px !important;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 30px solid $color-deep-saffron;
+    transition: all 0.5s ease-out;
+}
+
 .btn-outlin-orang {
     font-weight: 700;
     color: $color-deep-saffron;
@@ -14,6 +34,10 @@
     &:focus {
         color: $color-pine-tree;
         background-color: $color-deep-saffron;
+
+        .triangle {
+            border-left: 30px solid $color-pine-tree;
+        }
     }
 }
 
@@ -31,3 +55,23 @@
         background-color: darken($color-deep-saffron, 10%);
     }
 }
+
+.btn-close-modal {
+    cursor: pointer;
+    color: $color-deep-saffron;
+    font-weight: bolder;
+}
+
+.btn-ronded {
+    border-radius: 100px;
+}
+
+// .btn-circle {
+// width: 70px;
+// height: 70px;
+// text-align: center;
+// padding: 2rem; // changed
+// font-size: 2rem;
+// line-height: 1.33;
+// border-radius: 100px;
+// }

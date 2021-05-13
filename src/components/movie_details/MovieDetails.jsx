@@ -2,6 +2,7 @@ import Star from "../star/Star.jsx";
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import TrailerModal from "../trailer_modal/TrailerModal.jsx"
 
 const StyledHero = styled('div')`
 background : linear-gradient(0deg, rgba(34, 49, 39, 1), rgba(34, 49, 39, 0.4)), url("${({ backgroundImg }) => backgroundImg}");
@@ -13,12 +14,14 @@ let MovieDetails = () => {
 
     let [movieDetails, setMovieDetails] = useState([]);
     let [movieCredits, setMovieCredits] = useState([]);
+    let [movieTrailers, setMovieTrailers] = useState([]);
     let { movieId } = useParams();
     const apiKey = "54476c52f6659a1c87aca096a4365b14";
     const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
     const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+    const movieTrailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
     const sourceImage = "https://image.tmdb.org/t/p/original/";
-    const movieDetailsApiUrls = [movieDetailsUrl, movieCreditsUrl];
+    const movieDetailsApiUrls = [movieDetailsUrl, movieCreditsUrl, movieTrailerUrl];
 
     let starsRatings = () => {
         let stars = [];
@@ -30,25 +33,29 @@ let MovieDetails = () => {
 
     let movieStars = starsRatings();
 
-    useEffect(async () => {
-        try {
-            Promise.all(movieDetailsApiUrls.map((url) =>
-                fetch(url)
-                    .then(
-                        (response) => {
-                            return response.json();
-                        }
-                    )
-            )).then((data) => {
-                setMovieDetails(data[0]);
-                setMovieCredits(data[1].cast);
-            })
-        } catch (error) {
+    useEffect(() => {
+        async function fetchMovieDetails() {
+            try {
+                await Promise.all(movieDetailsApiUrls.map((url) =>
+                    fetch(url)
+                        .then(
+                            (response) => {
+                                return response.json();
+                            }
+                        )
+                )).then((data) => {
+                    setMovieDetails(data[0]);
+                    setMovieCredits(data[1].cast);
+                    setMovieTrailers(data[2]);
+                })
+            } catch (error) {
 
+            }
         }
+        fetchMovieDetails();
         window.scrollTo(0, 0);
     }, []);
-
+    //console.log(movieTrailers)
     return (
         <>
             <div className="">
@@ -58,6 +65,9 @@ let MovieDetails = () => {
                         <div className="row justify-content-center">
                             <div className="col-12 col-md-10 col-lg-8">
                                 <h1 className="text-center size-hero">{movieDetails.title}</h1>
+                            </div>
+                            <div className="col-12 col-md-10 col-lg-8">
+                                <TrailerModal movieTrailers={movieTrailers} />
                             </div>
                         </div>
                     </div>

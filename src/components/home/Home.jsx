@@ -2,7 +2,6 @@ import imgMultiPlatformeCameo from "../../dist/assets/multi_platforme_cameo.png"
 import CarouselHero from "../carousel/Carousel.jsx";
 import TitledSectionMovie from "../titled_section_movie/TitledSectionMovie.jsx";
 import TitledSectionTv from "../titled_section_tv/TitledSectionTV.jsx";
-import ButtonOutLine from "../button_outline/ButtonOutLine.jsx";
 import ButtonLinkOutLine from "../button_link_outline/ButtonLinkOutLine.jsx";
 
 let Home = (props) => {

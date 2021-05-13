@@ -29,7 +29,7 @@ function CarouselHero(props) {
                 nextIcon={<span aria-hidden="true" className="carousel-control-next-icon" />}
                 nextLabel={""}
                 fade
-                indicators={true} controls={true}
+                controls={true}
                 activeIndex={index}
                 onSelect={handleSelect}>
                 {props.carouselOfUpcomingMovies.map((movie) => {
