@@ -1,97 +1,95 @@
-import captainAmerica from "../../dist/img/captain_america.jpg";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import SearchBar from "../search/SearchBar.jsx";
-import MoviesSection from "../movie_section/MoviesSection.jsx";
+import Section from "../section/Section.jsx";
 import Paginator from "../paginator/Paginator.jsx";
+import StyledHero from "../styled_hero/StyledHero.jsx";
+import SectionLoader from "../section/SectionLoader.jsx";
+import MediaCardLoader from "../media_card/MediaCardLoader.jsx";
+import { UseFetchDataAsync } from "../personal_hooks/UseFetchDataAsync.jsx";
+import MetaTitle from "../metaTitle/MetaTitle.jsx";
 
 let Movies = (props) => {
+  const apiUrl = "https://api.themoviedb.org";
+  const discoverMoviesUrl = `${apiUrl}/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc`;
+  const searchMoviesUrl = `${apiUrl}/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=`;
 
-    const apiKey = "54476c52f6659a1c87aca096a4365b14";
-    const apiUrl = "https://api.themoviedb.org";
+  let [url, setUrl] = useState(discoverMoviesUrl);
 
-    //https://api.themoviedb.org/3/discover/movie?api_key=<<api_key>>&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
+  let {
+    data: movieList,
+    isPending: isPendingMovieList,
+    error: errorMovieList,
+  } = UseFetchDataAsync(url);
 
-    const discoverMoviesUrl = `${apiUrl}/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc`;
-    //const MoviesApiUrls = { "discoverMoviesUrl": discoverMoviesUrl };
-    const MoviesApiUrls = [discoverMoviesUrl];
-
-    let [movieList, setMovieList] = useState([]);
-    let [page, setPage] = useState([]);
-    let [totalPages, setTotalPages] = useState([]);
-    let [totalResults, setTotalResults] = useState([]);
-
-    async function fetchData() {
-        try {
-            await Promise.all(MoviesApiUrls.map((url) =>
-                fetch(url).then(response => response.json())
-            )).then(data => {
-                setMovieList(data[0].results);
-                setPage(data[0].page);
-                setTotalPages(data[0].total_pages);
-                setTotalResults(data[0].total_results);
-            })
-        } catch (error) {
-            console.error("erreur de connection");
-        }
+  let handleSearch = (event) => {
+    if (
+      !props.isEmptyInput(event.target.value) ||
+      event.target.value === undefined
+    ) {
+      setUrl(discoverMoviesUrl);
+    } else {
+      setUrl(`${searchMoviesUrl}${event.target.value}`);
     }
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  let handleClickPagination = (pageIndex) => {
+    setUrl(`${url}&page=${pageIndex}`);
+  };
 
-    console.log(movieList, page, totalPages, totalResults);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    return (
-        <>
-            <div className="py-5 bg-pine-tree text-light">
-                <div class="container py-5 mt-5">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <h1 class="text-center size-hero">Movies</h1>
-                        </div>
-                    </div>
-                    <SearchBar placeholder="Search Movie(s)" />
-                </div>
+  return (
+    <>
+      {window.scrollTo(0, 0)}
+      <MetaTitle title="Cameo - the best movie gallery" />
+      <StyledHero backgroundimage={null} title={`Movies`}>
+        <SearchBar
+          placeholder="Search Search Movie(s)"
+          handleSearch={handleSearch}
+        />
+      </StyledHero>
+
+      {errorMovieList && (
+        <div className="bg-pine-tree">
+          <div className="container">
+            <div className="row">
+              <div className="h1 text-center text-deep-saffron">
+                {errorMovieList}
+              </div>
             </div>
+          </div>
+        </div>
+      )}
+      {isPendingMovieList && (
+        <SectionLoader backgroundColor="bg-pine-tree">
+          <MediaCardLoader />
+          <MediaCardLoader />
+          <MediaCardLoader />
+          <MediaCardLoader />
+        </SectionLoader>
+      )}
+      {movieList && (
+        <Section
+          backgroundColor="bg-pine-tree"
+          mediaList={movieList.results}
+          cardType="movie"
+          handleClickMediaCard={props.handleClickMediaCard}
+        />
+      )}
 
-            <MoviesSection
-                backgroundColor="bg-pine-tree"
-                movies={movieList}
-                handleClickMovieCard={props.handleClickMovieCard}
-            />
-
-            <div class="py-2 bg-pine-tree">
-                <div class="container">
-                    <div class="row my-5">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <div>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <Paginator />
-        </>
-    );
+      {errorMovieList && ""}
+      {isPendingMovieList && ""}
+      {movieList && (
+        <Paginator
+          handleClickPagination={handleClickPagination}
+          page={movieList.page}
+          totalPages={movieList.total_pages}
+        />
+      )}
+    </>
+  );
 };
 
 export default Movies;

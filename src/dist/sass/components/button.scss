@@ -42,7 +42,7 @@
 }
 
 .btn-deep-saffron {
-    border: none;
+    border: solid 5px $color-deep-saffron;
     font-weight: 600;
     color: $color-pine-tree;
     background-color: $color-deep-saffron;
@@ -51,9 +51,11 @@
 
     &:hover,
     &:focus {
+        border: solid 5px darken($color-deep-saffron, 10%);
         color: darken($color-pine-tree, 10%);
         background-color: darken($color-deep-saffron, 10%);
     }
+    
 }
 
 .btn-close-modal {

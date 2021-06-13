@@ -1,11 +1,13 @@
-import StarIcon from "../../dist/assets/star-solid.svg";
+import { FaStar } from "react-icons/fa";
 
 let Star = () => {
-    return (
-        <>
-            <img className="icon-mini" src={StarIcon} alt="star" />
-        </>
-    );
+  return (
+    <>
+      <span className="text-deep-saffron">
+        <FaStar />
+      </span>
+    </>
+  );
 };
 
 export default Star;

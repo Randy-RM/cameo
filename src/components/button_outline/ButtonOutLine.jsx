@@ -6,7 +6,7 @@ let ButtonOutLine = (props) => {
                 <p>
                     <button
                         className="btn btn-lg btn-outlin-orang"
-                        onClick={() => props.handleClickMovieCard(props.movieId)}>
+                        onClick={() => props.handleClick(props.movieId)}>
                         {props.buttonText}
                     </button>
                 </p>
@@ -16,3 +16,5 @@ let ButtonOutLine = (props) => {
 };
 
 export default ButtonOutLine;
+
+//onClick={() => props.handleClickMovieCard(props.movieId, "movie")}

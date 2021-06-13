@@ -2,10 +2,11 @@
     border: solid 2px $color-deep-saffron;
 }
 
-.pagination>li>a {
+.pagination>li>a,
+.pagination>li>span {
     background-color: rgba($color-pine-tree, 0);
     color: $color-deep-saffron;
-    font-size: 1.5rem;
+    //font-size: 1.5rem;
     font-weight: 600;
 }
 
@@ -13,20 +14,26 @@
 .pagination>li>a:hover,
 .pagination>li>span:focus,
 .pagination>li>span:hover {
-    color: white;
+    color: $color-pine-tree;
     background-color: $color-deep-saffron !important;
     border: solid 2px $color-deep-saffron !important;
 }
 
-.pagination>.active>a {
-    color: white;
+.pagination>.active>a,
+.pagination>.active>span {
+    color: $color-pine-tree !important;
     background-color: $color-deep-saffron !important;
     border: solid 2px $color-deep-saffron !important;
 }
 
-.pagination>.active>a:hover {
+.pagination>.active>a:hover,
+.pagination>.active>span:hover {
     background-color: $color-deep-saffron !important;
     border: solid 2px $color-deep-saffron !important;
+}
+
+.page-item{
+    cursor: pointer;
 }
 
 .page-item:first-child .page-link {

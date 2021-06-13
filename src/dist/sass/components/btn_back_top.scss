@@ -1,0 +1,20 @@
+.back-to-top {
+    background-color: $color-white-gray;
+    position: fixed !important;
+    bottom: 1rem !important;
+    right: 1rem !important;
+    z-index: 99;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+    border: solid 3px rgba($color-white-gray, 0.5);
+    opacity: 0.6;
+
+    &:hover {
+        background-color: darken($color-white-gray, 20%);
+    }
+}
+
+.back-to-top-hide {
+    display: none;
+    transition: all ease-in-out 0.3s;
+}

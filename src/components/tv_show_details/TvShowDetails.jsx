@@ -1,149 +1,187 @@
-import Star from "../star/Star.jsx";
-import { useState, useEffect } from 'react';
+import { UseFetchDataAsync } from "../personal_hooks/UseFetchDataAsync.jsx";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import TrailerModal from "../trailer_modal/TrailerModal.jsx"
-
-const StyledHero = styled('div')`
-background : linear-gradient(0deg, rgba(34, 49, 39, 1), rgba(34, 49, 39, 0.4)), url("${({ backgroundImg }) => backgroundImg}");
-background-size:cover;
-background-position:center;
-`
+import { useEffect } from "react";
+import TrailerModal from "../trailer_modal/TrailerModal.jsx";
+import StyledHero from "../styled_hero/StyledHero.jsx";
+import HeroLoader from "../styled_hero/HeroLoader.jsx";
+import MediaCardDetails from "../media_card/MediaCardDetails.jsx";
+import MediaCardDetailsLoader from "../media_card/MediaCardDetailsLoader.jsx";
+import MetaTitle from "../metaTitle/MetaTitle.jsx";
 
 let TvShowDetails = () => {
+  let { tvShowId } = useParams();
 
-    let [tvShowDetails, setTvShowDetails] = useState([]);
-    let [tvShowCredits, setTvShowCredits] = useState([]);
-    let [tvShowTrailers, setTvShowTrailers] = useState([]);
-    let { tvShowId } = useParams();
-    const apiKey = "54476c52f6659a1c87aca096a4365b14";
-    const tvShowDetailsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${apiKey}`;
-    const tvShowCreditsUrl = `https://api.themoviedb.org/3/tv/${tvShowId}/credits?api_key=${apiKey}`;
-    const tvShowTrailerUrl = `https://api.themoviedb.org/3/tv/${tvShowId}/videos?api_key=${apiKey}`;
-    const sourceImage = "https://image.tmdb.org/t/p/original/";
-    const tvShowDetailsApiUrls = [tvShowDetailsUrl, tvShowCreditsUrl, tvShowTrailerUrl];
+  const apiUrl = "https://api.themoviedb.org";
+  const tvShowDetailsUrl = `${apiUrl}/3/tv/${tvShowId}?api_key=${process.env.REACT_APP_API_KEY}`;
+  const tvShowCreditsUrl = `${apiUrl}/3/tv/${tvShowId}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
+  const tvShowTrailerUrl = `${apiUrl}/3/tv/${tvShowId}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  const sourceImage = "https://image.tmdb.org/t/p/original/";
+  const sourceProfile = "https://image.tmdb.org/t/p/w185/";
 
-    let starsRatings = () => {
-        let stars = [];
-        for (let i = 0; i < Math.floor(tvShowDetails.vote_average); i++) {
-            stars.push(<Star key={i} />);
-        }
-        return stars;
-    };
+  let {
+    data: tvShowDetails,
+    isPending: isPendingTvShowDetails,
+    error: errorTvShowDetails,
+  } = UseFetchDataAsync(tvShowDetailsUrl);
 
-    let tvShowStars = starsRatings();
+  let {
+    data: tvShowCredits,
+    isPending: isPendingTvShowCredits,
+    error: errorTvShowCredits,
+  } = UseFetchDataAsync(tvShowCreditsUrl);
 
-    async function fetchTvShowDetails() {
-        try {
-            await Promise.all(tvShowDetailsApiUrls.map((url) =>
-                fetch(url)
-                    .then(
-                        (response) => {
-                            return response.json();
-                        }
-                    )
-            )).then((data) => {
-                setTvShowDetails(data[0]);
-                setTvShowCredits(data[1].cast);
-                setTvShowTrailers(data[2]);
-            })
-        } catch (error) {
+  let {
+    data: tvShowTrailers,
+    isPending: isPendingTvShowTrailers,
+    error: errorTvShowTrailers,
+  } = UseFetchDataAsync(tvShowTrailerUrl);
 
-        }
-        window.scrollTo(0, 0);
-    }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    useEffect(() => {
-        fetchTvShowDetails();
-    }, []);
-
-    return (
-        <>
-            <div className="">
-                <StyledHero backgroundImg={`${sourceImage}${tvShowDetails.backdrop_path}`}
-                    className="hero text-light">
-                    <div className="container py-5 mt-5">
-                        <div className="row justify-content-center">
-                            <div className="col-12 col-md-10 col-lg-8">
-                                <h1 className="text-center size-hero">{tvShowDetails.name}</h1>
-                            </div>
-                            <div className="col-12 col-md-10 col-lg-8">
-                                <TrailerModal trailers={tvShowTrailers} />
-                            </div>
-                        </div>
-                    </div>
-                </StyledHero>
-            </div>
-
-            <div className="bg-pine-tree">
-                <div className="container">
-
-                    <div className="row featurette">
-
-                        <div className="col-md-4 p-3 my-2">
-                            <div className="card-film-detail text-light">
-                                <div className="card-img text-center">
-                                    <img src={`${sourceImage}${tvShowDetails.poster_path}`} alt="" />
-                                </div>
-                            </div>
-                            <div className="py-2">
-                                <p className="text-center h4 fw-bold text-deep-saffron">
-                                    Release date {tvShowDetails.release_date}
-                                </p>
-                            </div>
-                            <div className="text-center">
-                                <p className="h4 fw-bold text-deep-saffron">
-                                    Ratings
-                                </p>
-                                <p className="">
-                                    <span className="text-deep-saffron">
-                                        {
-                                            tvShowStars.map((star) => {
-                                                return star;
-                                            })
-                                        }
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-
-
-                        <div className="col-md-7 p-3 my-2">
-                            <div className="text-light">
-                                <h2 className="my-1 display-6 fw-bold">
-                                    {tvShowDetails.name} synopsis
-                                </h2>
-                                <p className="my-1 h4">
-                                    {tvShowDetails.overview}
-                                </p>
-                            </div>
-                            <div className="text-light">
-                                <p className="my-3 display-6 fw-bold">
-                                    Credits
-                                </p>
-                                <p className="my-3 h4">
-                                    {
-                                        tvShowCredits.map((actor) => {
-                                            return (
-                                                <span key={actor.id}>
-                                                    {actor.name}
-                                                    <span className="text-deep-saffron"> As </span>
-                                                    {actor.character}
-                                                    <span className="text-deep-saffron fw-bolder">|</span>
-                                                </span>
-                                            );
-                                        })
-                                    }
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
+  return (
+    <>
+      {window.scrollTo(0, 0)}
+      <div>
+        {errorTvShowDetails && (
+          <div className="h1 text-center text-deep-saffron">
+            {errorTvShowDetails}
+          </div>
+        )}
+        {isPendingTvShowDetails && (
+          <HeroLoader backgroundColor="bg-pine-tree" StylizedFor="details" />
+        )}
+        {tvShowDetails && (
+          <>
+            <MetaTitle
+              title={
+                tvShowDetails.name.length > 25
+                  ? `Cameo - ${tvShowDetails.name.slice(0, 25)} ... details`
+                  : `Cameo - ${tvShowDetails.name} details`
+              }
+            />
+            <StyledHero
+              backgroundimage={
+                tvShowDetails.backdrop_path &&
+                `${sourceImage}${tvShowDetails.backdrop_path}`
+              }
+              title={tvShowDetails.name}
+            >
+              {errorTvShowTrailers && (
+                <div className="h1 text-center text-deep-saffron">
+                  {errorTvShowTrailers}
                 </div>
+              )}
+              {isPendingTvShowTrailers && "Loading..."}
+              {tvShowTrailers && tvShowTrailers.results.length > 0 && (
+                <TrailerModal trailers={tvShowTrailers} />
+              )}
+              <div className="container my-4">
+                <div className="row">
+                  <div className="col-md-12 text-center fw-bolder text-deep-saffron h5">
+                    {tvShowDetails.genres.map((genre) => {
+                      return (
+                        <span
+                          className="badge badge-pill text-pine-tree bg-deep-saffron m-1"
+                          key={genre.id}
+                        >{`${genre.name}`}</span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </StyledHero>
+          </>
+        )}
+      </div>
+      <div className="bg-pine-tree">
+        <div className="container">
+          <div className="row featurette">
+            {errorTvShowDetails && (
+              <div className="h1 text-center text-deep-saffron">
+                {errorTvShowDetails}
+              </div>
+            )}
+            {isPendingTvShowDetails && <MediaCardDetailsLoader />}
+            {tvShowDetails && (
+              <MediaCardDetails media={tvShowDetails}>
+                {tvShowDetails.name}
+              </MediaCardDetails>
+            )}
+            <div className="col-md-7 p-3 my-2">
+              <div className="text-light">
+                <h2 className="my-1 display-6 fw-bold">
+                  {errorTvShowDetails && (
+                    <div className="text-deep-saffron">
+                      {errorTvShowDetails}
+                    </div>
+                  )}
+                  {isPendingTvShowDetails && "Loading..."}
+                  {tvShowDetails && <>{tvShowDetails.name} synopsis</>}
+                </h2>
+                <p className="my-1 h4">
+                  {errorTvShowDetails && (
+                    <div className="text-deep-saffron">
+                      {errorTvShowDetails}
+                    </div>
+                  )}
+                  {isPendingTvShowDetails && "Loading..."}
+                  {tvShowDetails && <>{tvShowDetails.overview}</>}
+                </p>
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-kombu-green text-light py-4">
+        <div className="container">
+          <div className="row">
+            <p className="col-md-12 my-3 display-6 fw-bold text-center">
+              Credits
+            </p>
+          </div>
+          <div className="row">
+            {errorTvShowCredits && (
+              <div className="h4 text-center text-deep-saffron">
+                {errorTvShowCredits}
+              </div>
+            )}
+            {isPendingTvShowCredits && (
+              <div className="h4 text-center">Loading...</div>
+            )}
+            {tvShowCredits && (
+              <>
+                {tvShowCredits.cast.map((actor) => {
+                  return (
+                    actor.profile_path && (
+                      <div key={actor.id} className="col-md-2 p-2">
+                        <p className="text-center">
+                          <img
+                            src={`${sourceProfile}${actor.profile_path}`}
+                            className="img-thumbnail"
+                            alt={actor.name}
+                          />
+                        </p>
+                        <p className="text-center">
+                          {actor.name}
+                          <br />
+                          <span className="text-deep-saffron"> As </span>
+                          <br />
+                          {actor.character}
+                        </p>
+                      </div>
+                    )
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default TvShowDetails;

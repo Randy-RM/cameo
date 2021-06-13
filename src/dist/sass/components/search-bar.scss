@@ -1,6 +1,8 @@
 .form-control-borderless {
     border: none;
     background-color: rgba($color-pine-tree, 0);
+    color: $color-white;
+    font-weight: bolder;
 }
 
 .form-control-borderless:hover,
@@ -16,6 +18,7 @@
 .form-control-borderless::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: $color-white;
+    font-weight: bolder;
     opacity: 1;
     /* Firefox */
 }
