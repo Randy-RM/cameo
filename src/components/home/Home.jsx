@@ -8,6 +8,7 @@ import SectionLoader from "../section/SectionLoader.jsx";
 import MediaCardLoader from "../media_card/MediaCardLoader.jsx";
 import ButtonLink from "../button_link/ButtonLink.jsx";
 import MetaTitle from "../metaTitle/MetaTitle.jsx";
+import BouncingArrows from "../bouncingArrows/BouncingArrows.jsx";
 
 let Home = (props) => {
   const apiUrl = "https://api.themoviedb.org";
@@ -54,6 +55,15 @@ let Home = (props) => {
             handleClickMediaCard={props.handleClickMediaCard}
           />
         )}
+      </div>
+      <div className="bg-pine-tree">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 d-flex justify-content-center">
+              <BouncingArrows />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="bg-pine-tree">
