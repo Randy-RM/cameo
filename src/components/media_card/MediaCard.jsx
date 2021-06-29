@@ -18,7 +18,7 @@ let MediaCard = (props) => {
 
   return (
     <>
-      <div className="col-md-3 p-3 my-1">
+      <div className="col-6 col-md-3 col-lg-3 p-3 my-1">
         <div
           className="card-film text-white"
           onClick={() => props.handleClickMediaCard(id, props.cardType)}
@@ -39,7 +39,7 @@ let MediaCard = (props) => {
                 <p className="card-text-overlay">See more</p>
               </div>
             </div>
-            <h3 className="h4">{props.children}</h3>
+            <h3 className="h5 text-center">{props.children}</h3>
             <p className="fw-bold">
               <span className="text-deep-saffron">
                 Ratings :{" "}

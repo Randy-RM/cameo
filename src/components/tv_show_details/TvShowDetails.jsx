@@ -7,6 +7,7 @@ import HeroLoader from "../styled_hero/HeroLoader.jsx";
 import MediaCardDetails from "../media_card/MediaCardDetails.jsx";
 import MediaCardDetailsLoader from "../media_card/MediaCardDetailsLoader.jsx";
 import MetaTitle from "../metaTitle/MetaTitle.jsx";
+import CreditActor from "../credit_actor/CreditActor.jsx";
 
 let TvShowDetails = () => {
   let { tvShowId } = useParams();
@@ -156,22 +157,11 @@ let TvShowDetails = () => {
                 {tvShowCredits.cast.map((actor) => {
                   return (
                     actor.profile_path && (
-                      <div key={actor.id} className="col-md-2 p-2">
-                        <p className="text-center">
-                          <img
-                            src={`${sourceProfile}${actor.profile_path}`}
-                            className="img-thumbnail"
-                            alt={actor.name}
-                          />
-                        </p>
-                        <p className="text-center">
-                          {actor.name}
-                          <br />
-                          <span className="text-deep-saffron"> As </span>
-                          <br />
-                          {actor.character}
-                        </p>
-                      </div>
+                      <CreditActor
+                        key={actor.id}
+                        actor={actor}
+                        sourceProfile={sourceProfile}
+                      />
                     )
                   );
                 })}

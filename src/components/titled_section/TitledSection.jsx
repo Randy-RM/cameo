@@ -5,11 +5,11 @@ let TitledSection = (props) => {
   return (
     <>
       <div className={props.backgroundColor}>
-        <div className="container py-5">
-          <h2 className="text-center text-white fw-bold py-4">
+        <div className="container py-2">
+          <h2 className="text-center text-white fw-bold py-2">
             {props.sectionTitle}
           </h2>
-          <div className="row featurette py-3">
+          <div className="row featurette py-2 justify-content-center">
             {props.mediaList.map((media) => {
               let title = "";
               if (props.cardType === "movie") {

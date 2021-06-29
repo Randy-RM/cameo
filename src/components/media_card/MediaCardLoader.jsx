@@ -1,7 +1,7 @@
 let MediaCardLoader = () => {
   return (
     <>
-      <div className="col-md-3 p-3 my-1">
+      <div className="col-6 col-md-3 col-lg-3 p-3 my-1">
         <div className="card-film text-white">
           <div className="text-center">
             <div className="card-overlay">
