@@ -22,7 +22,7 @@ let TvShow = (props) => {
 
   let handleSearch = (event) => {
     if (
-      !props.isEmptyInput(event.target.value) ||
+      props.isOnlyEmptyCharacters(event.target.value) ||
       event.target.value === undefined
     ) {
       setUrl(popularTvShowUrl);

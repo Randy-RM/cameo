@@ -39,11 +39,11 @@ let App = () => {
     }
   };
 
-  let isEmptyInput = (string) => {
+  let isOnlyEmptyCharacters = (string) => {
     if (!string.replace(/\s+/, "").length) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   };
 
   return (
@@ -66,7 +66,7 @@ let App = () => {
             <Route path="/tv-show">
               <TvShow
                 handleClickMediaCard={handleClickMediaCard}
-                isEmptyInput={isEmptyInput}
+                isOnlyEmptyCharacters={isOnlyEmptyCharacters}
               />
             </Route>
             <Route path="/movie/details/:movieId">
@@ -75,7 +75,7 @@ let App = () => {
             <Route path="/movies">
               <Movies
                 handleClickMediaCard={handleClickMediaCard}
-                isEmptyInput={isEmptyInput}
+                isOnlyEmptyCharacters={isOnlyEmptyCharacters}
               />
             </Route>
             <Route path="/home">
